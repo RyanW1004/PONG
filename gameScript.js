@@ -41,6 +41,7 @@ function handleMouseClick() {
 window.onload = function() {
 	canvas = document.getElementById('gameCanvas');
 	canvasContext = canvas.getContext('2d');
+	canvasContext.font="26px Verdana";
 	
 	var framesPerSec = 120;
 	setInterval(function() {
@@ -55,6 +56,9 @@ window.onload = function() {
 			var mousePos = calculateMousePos(evt)
 			paddle1Y = mousePos.y - (PADDLE_HEIGHT/2);
 		});
+
+	var para = document.getElementById('gameText');
+	para.append(' ' + winningScore + ' points! Good Luck!');
 }
 
 function ballReset() {
@@ -125,7 +129,7 @@ function drawEverything() {
 	
 	//scores
 	canvasContext.fillText(playerScore, 100, 100);
-	canvasContext.fillText(AIScore, canvas.width-100, 100);
+	canvasContext.fillText(AIScore, canvas.width-130, 100);
 	
 	winning();
 }
@@ -144,8 +148,8 @@ function colorCircle(centerX, centerY, radius, drawColor) {
 }
 function winning () {
 	if (playerScore === winningScore) {
-		canvasContext.fillText('YOU WIN!!!', canvas.width/2-40, canvas.height/2);
-		canvasContext.fillText('Click to restart', canvas.width/2 - 45, canvas.height/2 + 20);
+		canvasContext.fillText('YOU WIN!!!', canvas.width/2-80, canvas.height/2-30);
+		canvasContext.fillText('Click to restart', canvas.width/2 - 105, canvas.height/2 + 20);
 		ballX = 100;
 		ballSpeedX = 0;
 		ballY = 100;
@@ -154,8 +158,8 @@ function winning () {
 		paddle2Y = 250;
 	}
 	if (AIScore === winningScore) {
-		canvasContext.fillText('YOU LOSE!', canvas.width/2-40, canvas.height/2);
-		canvasContext.fillText('Click to restart', canvas.width/2 - 45, canvas.height/2 + 20);
+		canvasContext.fillText('YOU LOSE!', canvas.width/2-80, canvas.height/2-30);
+		canvasContext.fillText('Click to restart', canvas.width/2 - 105, canvas.height/2 + 20);
 		ballX = 100;
 		ballSpeedX = 0;
 		ballY = 100;
